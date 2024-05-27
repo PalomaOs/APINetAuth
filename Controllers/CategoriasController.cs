@@ -1,6 +1,7 @@
 using System.Data.Common;
 using backendnet.Data;
 using backendnet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +9,8 @@ namespace backendnet.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-
-public class CategoriasController(DataContext context) : Controller
+[Authorize(Roles = "Administrador")]
+public class CategoriasController(IdentityContext context) : Controller
 {
     // GET: api/categorias
     [HttpGet]

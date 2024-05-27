@@ -1,10 +1,11 @@
 using backendnet.Data.Seed;
 using backendnet.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace backendnet.Data
 {
-    public class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
+    public class IdentityContext(DbContextOptions<IdentityContext> options) : IdentityDbContext<CustomIdentityUser>(options)
     {
         public DbSet<Pelicula> Pelicula { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
@@ -13,6 +14,9 @@ namespace backendnet.Data
         {
             modelBuilder.ApplyConfiguration(new SeedCategoria());
             modelBuilder.ApplyConfiguration(new SeedPelicula());
+            modelBuilder.SeedUserIdentityData();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

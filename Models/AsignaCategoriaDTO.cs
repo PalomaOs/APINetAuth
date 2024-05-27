@@ -2,6 +2,6 @@ namespace backendnet.Models
 {
     public class AsignaCategoriaDTO
     {
-        public int CategoriaId { get; set; }
+        public int? CategoriaId { get; set; }
     }
 }
